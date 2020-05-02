@@ -8,6 +8,9 @@ install and run LilyPond directly (but not on macOS since Catalina).
 
 To use it, first build the image, then run the container as described below.
 
+## Acknowledgements
+This Dockerfile is based almost entirely on the one at https://github.com/gpit2286/docker-lilypond.
+
 ## Prerequisites
 * [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) must be installed and running.
 * Any local versions of LilyPond (possibly installed prior an upgrade to Catalina broke running it locally) should be
