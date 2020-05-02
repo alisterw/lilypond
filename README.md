@@ -1,6 +1,6 @@
 # Dockerfile for running [LilyPond](http://lilypond.org/) in a container
 This guide is written from the point of view of a macOS user, since on other operating systems it's possible to
-install and run LilyPond directly (but not on macOS since Catalina).
+install and run LilyPond directly (but [not on macOS since Catalina](http://lilypond.1069038.n5.nabble.com/lilypond-does-not-work-with-Mac-OS-10-15-Catalina-td224189.html)).
 
 This version runs on Ubuntu [Focal Fossa](https://releases.ubuntu.com/20.04/).
 At time of writing building the image causes lilypond version [2.20.0-1](http://lilypond.org/website/misc/announce-v2.2)
@@ -33,7 +33,7 @@ Once the image is built you can delete the directory containing the cloned repo 
 ## Running the container
 You can check the container works by running it as follows:
 ```
-$ docker run --rm -v $PWD:$PWD -w $PWD lilypond:1.0 lilypond --version
+$ docker run --rm -v "$PWD":"$PWD" -w "$PWD" lilypond:1.0 lilypond --version
 GNU LilyPond 2.20.0
 
 Copyright (c) 1996--2015 by
