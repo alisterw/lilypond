@@ -15,5 +15,5 @@ ENV LANG en_US.utf8
 # Set tell the installer that we are working in a noninteractive ENV 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Install Lilypond. 
+# Install LilyPond. 
 RUN apt-get update && apt-get -y install lilypond
