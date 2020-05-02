@@ -10,7 +10,7 @@ To use it, first build the image, then run the container as described below.
 
 ## Prerequisites
 * [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) must be installed and running.
-* Any local versions of lilypond (possibly installed prior an upgrade to Catalina broke running it locally) should be
+* Any local versions of LilyPond (possibly installed prior an upgrade to Catalina broke running it locally) should be
 uninstalled.
 
 ## Building the image
