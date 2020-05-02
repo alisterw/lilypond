@@ -48,7 +48,7 @@ information.
 ```
 
 ## Convenience script
-For convenience it's worth creating a shell script which allows you to run the container by just typing `lilypond`
+For convenience it's worth creating a shell script which will allow you to run the container simply by typing `lilypond`
 at the command prompt.
 
 To do this, first create a file named `lilypond` in `/usr/local/bin` with the following content:
@@ -60,12 +60,14 @@ To do this, first create a file named `lilypond` in `/usr/local/bin` with the fo
 One easy way to create the file is to run `sudo nano /usr/local/bin/lilypond`, then paste in the above content, save by
 hitting ctrl-O (not cmd-O) followed by enter, then quit by hitting ctrl-X.
 
+You will probably need to enter your password unless you've run sudo recently.
+
 Once you've created the file make it executable as follows:
 ```
 $ sudo chmod +x /usr/local/bin/lilypond
 ```
 
-You will need to enter your password.
+Again, you may need to enter your password.
 
 Now you can just invoke the container with `lilypond`:
 ```
@@ -85,7 +87,8 @@ information.
 
 ## Usage with [Frescobaldi](https://frescobaldi.org/)
 To use the containerised version of LilyPond with Frescobaldi do the following:
-* Select "Preferences screen..." from the Frescobaldi menu
+* Launch Frescobaldi
+* Select "Preferences..." from the "Frescobaldi" menu
 * Select the "LilyPond Preferences" section from the list on the left
 * Under "LilyPond versions to use" select the default entry (there will probably only be one anyway)
 * Click "Edit..."
