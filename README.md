@@ -1,10 +1,10 @@
 # Dockerfile for running [LilyPond](http://lilypond.org/) in a container
+This guide is written from the point of view of a macOS user, since on other operating systems it's possible to
+install and run LilyPond directly (but not on macOS since Catalina).
+
 This version runs on Ubuntu [Focal Fossa](https://releases.ubuntu.com/20.04/).
 At time of writing building the image causes lilypond version [2.20.0-1](http://lilypond.org/website/misc/announce-v2.2)
 to be installed.
-
-This guide is written from the point of view of a macOS user, since on other operating systems it's possible to
-install and run LilyPond directly (but not on macOS since Catalina).
 
 To use it, first build the image, then run the container as described below.
 
@@ -14,7 +14,7 @@ This Dockerfile is based almost entirely on the one at https://github.com/gpit22
 ## Prerequisites
 * [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) must be installed and running.
 * Any local versions of LilyPond (possibly installed prior an upgrade to Catalina broke running it locally) should be
-uninstalled.
+uninstalled if you're planning to use the convenience script.
 
 ## Building the image
 First clone this git repository by running the following in a Terminal window:
@@ -25,7 +25,7 @@ $ git clone https://github.com/alisterw/lilypond.git
 To build the image:
 ```
 $ cd lilypond
-$ /usr/local/bin/docker build --tag lilypond:1.0 .
+$ docker build --tag lilypond:1.0 .
 ```
 
 Once the image is built you can delete the directory containing the cloned repo if you like.
@@ -33,7 +33,7 @@ Once the image is built you can delete the directory containing the cloned repo 
 ## Running the container
 You can check the container works by running it as follows:
 ```
-$ /usr/local/bin/docker run --rm -v $PWD:$PWD -w $PWD lilypond:1.0 lilypond --version
+$ docker run --rm -v $PWD:$PWD -w $PWD lilypond:1.0 lilypond --version
 GNU LilyPond 2.20.0
 
 Copyright (c) 1996--2015 by
@@ -48,7 +48,7 @@ information.
 ```
 
 ## Convenience script
-For convenience it's worth creating a shell script which will allow you to run the container simply by typing `lilypond`
+For convenience, it's worth creating a shell script which will allow you to run the container simply by typing `lilypond`
 at the command prompt.
 
 To do this, first create a file named `lilypond` in `/usr/local/bin` with the following content:
@@ -57,7 +57,7 @@ To do this, first create a file named `lilypond` in `/usr/local/bin` with the fo
 /usr/local/bin/docker run --rm -v "$PWD":"$PWD" -w "$PWD" lilypond:1.0 lilypond "$@"
 ```
 
-One easy way to create the file is to run `sudo nano /usr/local/bin/lilypond`, then paste in the above content, save by
+One easy way to create this file is to run `sudo nano /usr/local/bin/lilypond`, then paste in the above content, save by
 hitting ctrl-O (not cmd-O) followed by enter, then quit by hitting ctrl-X.
 
 You will probably need to enter your password unless you've run sudo recently.
@@ -98,12 +98,12 @@ To use the containerised version of LilyPond with Frescobaldi do the following:
 ## Troubleshooting problems with included files
 If your LilyPond files include other LilyPond files which are not in the same directory (or below) you will most
 likely get an error. This is because of the way we map directories when running the docker container, specifically
-because we run it with the option `-v $PWD:PWD`. This causes the container (and therefore LilyPond) to be able to see the current directory (and anything within it) but not anything above it or alongside it.
+because we run it with the option `-v "$PWD":"$PWD"`. This causes the container (and therefore LilyPond) to be able to see the current directory (and anything within it) but not anything above it or alongside it.
 
 To fix this you can map a directory at a higher level. In general it's good practice not to give a container access to
 more of your local file system than necessary, but if you need to you can change that option from `-v $PWD:PWD` to:
-* `-v $HOME:$HOME` - gives LilyPond access to pretty much anything your user has created on your Mac
-* `-v /Users:/Users` - gives LilyPond access to pretty much anything any user has created on your Mac (assuming you have pperms to it)
+* `-v "$HOME":"$HOME"` - gives LilyPond access to pretty much anything your user has created on your Mac
+* `-v /Users:/Users` - gives LilyPond access to pretty much anything any user has created on your Mac (assuming you have perms to it)
 
 If you're including files outside of `/Users` then you are almost certainly doing something wrong, but you can make it
 work by specifying multiple `-v` options where you explicitly map each directory. Detailed instructions for that are
