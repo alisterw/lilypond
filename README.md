@@ -9,15 +9,26 @@ install and run LilyPond directly (but not on macOS since Catalina).
 To use it, first build the image, then run the container as described below.
 
 ## Prerequisites
-[Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) must be installed and running.
+* [Docker Desktop for Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac) must be installed and running.
+* Any local versions of lilypond (possibly installed prior an upgrade to Catalina broke running it locally) should be
+uninstalled.
 
 ## Building the image
-To build the image, run the following in a Terminal window:
+First clone this git repository by running the following in a Terminal window:
 ```
+$ git clone https://github.com/alisterw/lilypond.git
+```
+
+To build the image:
+```
+$ cd lilypond
 $ /usr/local/bin/docker build --tag lilypond:1.0 .
 ```
 
+Once the image is built you can delete the directory containing the cloned repo if you like.
+
 ## Running the container
+You can check the container works by running it as follows:
 ```
 $ /usr/local/bin/docker run --rm -v $PWD:$PWD -w $PWD lilypond:1.0 lilypond --version
 GNU LilyPond 2.20.0
@@ -43,7 +54,10 @@ To do this, first create a file named `lilypond` in `/usr/local/bin` with the fo
 /usr/local/bin/docker run --rm -v "$PWD":"$PWD" -w "$PWD" lilypond:1.0 lilypond "$@"
 ```
 
-Then make it executable as follows:
+One easy way to create the file is to run `sudo nano /usr/local/bin/lilypond`, then paste in the above content, save by
+hitting ctrl-O (not cmd-O) followed by enter, then quit by hitting ctrl-X.
+
+Once you've created the file make it executable as follows:
 ```
 $ sudo chmod +x /usr/local/bin/lilypond
 ```
