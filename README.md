@@ -1,6 +1,7 @@
-# Dockerfile for running LilyPond in a container
-This version runs on Ubuntu Focal Fossa. At time of writing building the image causes lilypond version 2.20.0-1 to be
-installed.
+# Dockerfile for running [LilyPond](http://lilypond.org/) in a container
+This version runs on Ubuntu [Focal Fossa](https://releases.ubuntu.com/20.04/).
+At time of writing building the image causes lilypond version [2.20.0-1](http://lilypond.org/website/misc/announce-v2.2)
+to be installed.
 
 This guide is written from the point of view of a macOS user, since on other operating systems it's possible to
 install and run LilyPond directly (but not on macOS since Catalina).
@@ -65,7 +66,7 @@ under certain conditions.  Invoke as `lilypond --warranty' for more
 information.
 ```
 
-## Usage with Frescobaldi
+## Usage with [Frescobaldi](https://frescobaldi.org/)
 To use the containerised version of LilyPond with Frescobaldi do the following:
 * Select "Preferences screen..." from the Frescobaldi menu
 * Select the "LilyPond Preferences" section from the list on the left
