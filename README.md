@@ -107,6 +107,9 @@ more of your files than necessary, but if you need to you can change that option
 
 If you're including files outside of `/Users` then you are almost certainly doing something wrong, but you can make it
 work by specifying multiple `-v` options where you explicitly mount each directory. Detailed instructions for that are
-outside the scope of this guide, but it's worth noting that
+outside the scope of this guide, but it's worth noting that:
 * where possible you will want to mount directories to the same path inside the container as on the host system as this enables hyperlinks to work in e.g. Frescobaldi
 * in some cases this won't be possible (specifying `-v /` makes no sense at all, for example), in which case you can mount a host directory elsewhere by using the syntax `- v <host-src>:<container-dst>`
+
+See the section on Volumes in the [documentation for the `docker run` command](https://docs.docker.com/engine/reference/run/)
+for more information.
